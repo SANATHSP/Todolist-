@@ -1,0 +1,15 @@
+{
+	"folders": [
+		{
+			"path": "../../../server"
+		},
+		{
+			"path": "../.."
+		}
+	],
+	"settings": {
+		"git.ignoreLimitWarning": true,
+		"liveServer.settings.multiRootWorkspaceName": "client",
+		"liveServer.settings.port": 5501
+	}
+}
