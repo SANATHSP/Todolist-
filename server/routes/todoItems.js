@@ -6,15 +6,17 @@ const todoItemsModel = require('../models/todoItems');
 router.post('/api/item', async (req, res)=>{
     try{
       const newItem = new todoItemsModel({
-        item: req.body.item
-      })
+        item: req.body.item,
+        dueDate: req.body.dueDate,
+        reminder: req.body.reminder,
+      });
       //save this item in database
       const saveItem = await newItem.save()
       res.status(200).json(saveItem);
-    }catch(err){
+    } catch(err){
       res.json(err);
     }
-  })
+  });
   
   //create second route -- get data from database
 router.get('/api/items', async (req, res)=>{
@@ -27,10 +29,10 @@ router.get('/api/items', async (req, res)=>{
 })
 
 //update item
-router.put('/api/item/:id', async (req, res)=>{
+router.put('/api/item/:id', async (req, res)=> {
   try{
     //find the item by its id and update it
-    const updateItem = await todoItemsModel.findByIdAndUpdate(req.params.id, {$set: req.body});
+    const updateItem = await todoItemsModel.findByIdAndUpdate(req.params.id, {$set: req.body}, { new: true });
     res.status(200).json(updateItem);
   }catch(err){
     res.json(err);
